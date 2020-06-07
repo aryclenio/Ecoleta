@@ -29,6 +29,7 @@ The last page has a description of the point that you click.
 </p>
 
 
+
 ## Available Scripts
 
 To install this project, make sure you have Yarn installed, and run this command in your terminal:
