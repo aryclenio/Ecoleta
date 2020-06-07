@@ -1,10 +1,27 @@
 import React from "react";
-import { View, ImageBackground, Image, Text, StyleSheet } from "react-native";
+import Constants from "expo-constants";
+import { View, TouchableOpacity, StyleSheet, Text } from "react-native";
 import { Feather as Icon } from "@expo/vector-icons";
-import { RectButton } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/native";
 
 const Points = () => {
-  return <View></View>;
+  const navigation = useNavigation();
+
+  const handleNavitateBack = () => {
+    navigation.goBack();
+  };
+
+  return (
+    <View style={styles.container}>
+      <TouchableOpacity onPress={handleNavitateBack}>
+        <Icon name="arrow-left" sie={28} color="#34cb79" />
+      </TouchableOpacity>
+      <Text style={styles.title}>Bem vindo</Text>
+      <Text style={styles.description}>
+        Encontre no mapa um ponto de coleta
+      </Text>
+    </View>
+  );
 };
 export default Points;
 
