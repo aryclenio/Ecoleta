@@ -1,10 +1,72 @@
-import React from "react";
-import { View, ImageBackground, Image, Text, StyleSheet } from "react-native";
-import { Feather as Icon } from "@expo/vector-icons";
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  ImageBackground,
+  TouchableOpacity,
+  Image,
+  Text,
+  StyleSheet,
+  SafeAreaView,
+} from "react-native";
+import { Feather as Icon, FontAwesome } from "@expo/vector-icons";
 import { RectButton } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/native";
+import api from "../../services/api";
+
+interface Item {
+  id: number;
+  title: string;
+  image_url: string;
+}
 
 const Detail = () => {
-  return <View></View>;
+  const [items, setItems] = useState<Item[]>([]);
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    api.get("items").then((res) => {
+      setItems(res.data);
+    });
+  });
+  const handleNavitateBack = () => {
+    navigation.goBack();
+  };
+
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={styles.container}>
+        <TouchableOpacity onPress={handleNavitateBack}>
+          <Icon name="arrow-left" sie={28} color="#34cb79" />
+        </TouchableOpacity>
+        <Image
+          style={styles.pointImage}
+          source={{
+            uri:
+              "https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60",
+          }}
+        />
+        <Text style={styles.pointName}>Mercado do João</Text>
+        <Text style={styles.pointItems}>Lâmpada</Text>
+
+        <View style={styles.address}>
+          <Text style={styles.addressTitle}>Endereço</Text>
+          <Text style={styles.addressContent}>
+            Rua José da Penha, Angicos-RN
+          </Text>
+        </View>
+      </View>
+      <View style={styles.footer}>
+        <RectButton style={styles.button} onPress={() => {}}>
+          <FontAwesome name="whatsapp" size={20} color="#fff" />
+          <Text style={styles.buttonText}>Whatsapp</Text>
+        </RectButton>
+        <RectButton style={styles.button} onPress={() => {}}>
+          <Icon name="mail" size={20} color="#fff" />
+          <Text style={styles.buttonText}>E-mail</Text>
+        </RectButton>
+      </View>
+    </SafeAreaView>
+  );
 };
 export default Detail;
 
@@ -59,6 +121,7 @@ const styles = StyleSheet.create({
     borderTopWidth: StyleSheet.hairlineWidth,
     borderColor: "#999",
     paddingVertical: 20,
+    paddingBottom: 0,
     paddingHorizontal: 32,
     flexDirection: "row",
     justifyContent: "space-between",
