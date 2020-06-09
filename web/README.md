@@ -30,7 +30,7 @@ There was a map integration where the user can pin your location.
 The last data is to mark witch products you will collect in your point, so the users can see if your location can retrieve the items they have.
 <br>
 <p align="center">
-   <img src="https://user-images.githubusercontent.com/31252524/83979601-f9ca8e00-a8e5-11ea-9067-c9ec47bdb60c.png" width="600" align="middle">
+   <img src="https://user-images.githubusercontent.com/31252524/83979592-e4edfa80-a8e5-11ea-9ab2-f6097af76ae2.png" width="600" align="middle">
 </p>
 
 
